@@ -1,0 +1,30 @@
+{
+	"name": "grammy-tgbot-parser",
+	"version": "1.0.0",
+	"description": "tgbot with avito parser",
+	"main": "bot.ts",
+	"type": "module",
+	"scripts": {
+		"start": "node --loader ts-node/esm bot.ts",
+		"avito": "node --loader ts-node/esm scrapper/avito.ts",
+		"dev": "node --loader ts-node/esm --watch bot.ts"
+	},
+	"author": "G. Alexey Sergeevich",
+	"license": "ISC",
+	"dependencies": {
+		"@grammyjs/conversations": "^1.2.0",
+		"axios": "^1.7.7",
+		"cheerio": "^1.0.0",
+		"dotenv": "^16.4.5",
+		"grammy": "^1.30.0",
+		"mongodb": "^6.9.0",
+		"mongoose": "^8.7.0",
+		"node-cron": "^3.0.3"
+	},
+	"devDependencies": {
+		"@types/node": "^22.7.4",
+		"@types/node-cron": "^3.0.11",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.6.2"
+	}
+}
