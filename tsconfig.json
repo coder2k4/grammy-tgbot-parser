@@ -1,18 +1,18 @@
 {
-	"compilerOptions": {
-		"module": "ESNext",
-		"moduleResolution": "node",
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"skipLibCheck": true,
-		"target": "ES2020",
-		"outDir": "./dist",
-		"rootDir": ".",
-		"baseUrl": ".",
-		"paths": {
-			"*": ["*"]
-		}
-	},
-	"include": ["**/*.ts"],
-	"exclude": ["node_modules"]
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "target": "ES2020",
+    "outDir": "./dist",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["*"]
+    }
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules"]
 }

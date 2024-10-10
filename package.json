@@ -2,7 +2,7 @@
 	"name": "grammy-tgbot-parser",
 	"version": "1.0.0",
 	"description": "tgbot with avito parser",
-	"main": "bot.ts",
+	"main": "main.ts",
 	"type": "module",
 	"scripts": {
 		"watch": "nodemon -e ts --exec \"node --loader ts-node/esm --experimental-specifier-resolution=node main.ts\"",
@@ -12,6 +12,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@grammyjs/conversations": "^1.2.0",
+		"@grammyjs/i18n": "^1.1.2",
 		"axios": "^1.7.7",
 		"cheerio": "^1.0.0",
 		"dotenv": "^16.4.5",
