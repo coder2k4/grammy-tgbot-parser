@@ -1,3 +1,5 @@
+export { conversationsMiddleware } from './conversation/conversation';
+
 export { restoreSessionFromDB } from './restoreSessionFromDB/restoreSessionFromDB';
 
 export { sessionStorage, setupSession } from './session/session';

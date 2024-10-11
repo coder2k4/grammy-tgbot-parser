@@ -5,36 +5,72 @@ import {
 	helpCommand,
 	languageCommand,
 	parseCommand,
+	payCommand,
+	profileCommand,
 	startCommand,
 	tapDimonCommand,
 	unknownCommand,
 } from '../../commands';
 import { i18n } from '../../middleware';
-import { MyContext } from '../../types/types';
+import { CommandInfo, MyContext } from '../../types/types';
 
-export const getCommandList = (locale: string = 'ru' ): BotCommand[] => [
-	{
-		command: 'start',
-		description: i18n.t(locale, 'commands.startDescription'),
+// Создаем объект, содержащий все команды и их обработчики
+const commands: Record<string, CommandInfo> = {
+	start: {
+		handler: startCommand,
+		description: 'commands.startDescription',
+		isListable: true,
 	},
-	{ command: 'help', description: i18n.t(locale, 'commands.helpDescription') },
-	{ command: 'parse', description: i18n.t(locale, 'commands.parseDescription') },
-	{ command: 'games', description: i18n.t(locale, 'commands.gamesDescription') },
-	{
-		command: 'language',
-		description: i18n.t(locale, 'commands.languageDescription'),
+	help: {
+		handler: helpCommand,
+		description: 'commands.helpDescription',
+		isListable: true,
 	},
-];
+	parse: {
+		handler: parseCommand,
+		description: 'commands.parseDescription',
+		isListable: true,
+	},
+	games: {
+		handler: gamesCommand,
+		description: 'commands.gamesDescription',
+		isListable: true,
+	},
+	profile: {
+		handler: profileCommand,
+		description: 'commands.profileDescription',
+		isListable: true,
+	},
+	pay: {
+		handler: payCommand,
+		description: 'commands.payDescription',
+		isListable: true,
+	},
+	language: {
+		handler: languageCommand,
+		description: 'commands.languageDescription',
+		isListable: true,
+	},
+	tapDimon: {
+		handler: tapDimonCommand,
+		description: 'commands.tapDimonDescription',
+		isListable: false,
+	},
+};
+
+export const getCommandList = (locale: string = 'ru'): BotCommand[] =>
+	Object.entries(commands)
+		.filter(([_, info]) => info.isListable)
+		.map(([command, info]) => ({
+			command,
+			description: i18n.t(locale, info.description),
+		}));
 
 export const commandHandler = new Composer<MyContext>();
-commandHandler.command('start', startCommand);
-commandHandler.command('help', helpCommand);
-commandHandler.command('parse', parseCommand);
-commandHandler.command('games', gamesCommand);
-commandHandler.command('language', languageCommand);
 
+Object.entries(commands).forEach(([command, info]) => {
+	commandHandler.command(command, info.handler);
+});
 
-// Игры
-commandHandler.command('tapDimon', tapDimonCommand);
 // Обработка неизвестных команд
 commandHandler.command('*', unknownCommand);

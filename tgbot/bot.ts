@@ -7,7 +7,7 @@ import {
 	errorAdminNotifyHandler,
 	getCommandList,
 } from './handlers';
-import { i18n, restoreSessionFromDB, setupSession } from './middleware';
+import { conversationsMiddleware, i18n, restoreSessionFromDB, setupSession } from './middleware';
 import { MyContext } from './types/types';
 
 // Загружаем env переменные
@@ -24,7 +24,7 @@ export class BotManager {
 		this.setupErrorHandling();
 	}
 
-	private async setupMiddleware() {
+	private setupMiddleware() {
 		this.bot.use(setupSession()); // Инициализируем сессию
 		this.bot.use(i18n); // Подключаем интернационализацию i18n
 
@@ -35,6 +35,7 @@ export class BotManager {
 		});
 
 		this.bot.use(conversations()); // Подключаем middleware для работы c "разговорами"
+		this.bot.use(conversationsMiddleware()); // Подключаем наш новый middleware для conversations
 	}
 
 	private setupHandlers() {

@@ -13,7 +13,6 @@ export type MyContext = Context & SessionFlavor<SessionData> & ConversationFlavo
 export type MyConversation = Conversation<MyContext>;
 
 
-
 export interface ScenarioSchema {
 	name: string
 	query: string
@@ -23,3 +22,9 @@ export interface ScenarioSchema {
 	isActive: boolean
 	lastRun?: Date
 }
+
+export type CommandInfo = {
+	handler: (ctx: MyContext) => Promise<void>;
+	description: string;
+	isListable: boolean;
+};
